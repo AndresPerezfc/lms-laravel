@@ -19,10 +19,23 @@
         ],
 
         [
-            'name' => 'Portadas',
-            'icon' => 'fa-solid fa-images',
-            'route' => '',
+            'name' => 'Empresas',
+            'icon' => 'fa-solid fa-building',
             'active' => false,
+            'submenu' => [
+                [
+                    'name' => 'información',
+                    'icon' => 'fa-regular fa-circle',
+                    'route' => '',
+                    'active' => false,
+                ],
+                [
+                    'name' => 'información',
+                    'icon' => 'fa-regular fa-circle',
+                    'route' => '',
+                    'active' => false,
+                ],
+            ],
         ],
     ];
 @endphp
@@ -44,16 +57,51 @@
                             {{ $link['header'] }}
                         </div>
                     @else
-                        <a href="{{ $link['route'] }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-900' : '' }}">
-                            <span class="inline-flex w-6 h-6 justify-center items-center">
-                                <i class="{{ $link['icon'] }} text-gray-500"></i>
-                            </span>
-                            <span class="ms-3">{{ $link['name'] }}</span>
-                        </a>
+                        @isset($link['submenu'])
+                            <div x-data="{
+                                open: {{$link['active'] ? 'true' : 'false'}}
+                            
+                            }">
+                                <button
+                                    class="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-900' : '' }}"
+                                    x-on:click="open = !open">
+                                    <span class="inline-flex w-6 h-6 justify-center items-center">
+                                        <i class="{{ $link['icon'] }} text-gray-500"></i>
+                                    </span>
+                                    <span class="ms-3 text-left flex-1">{{ $link['name'] }}</span>
+
+                                    <i class="fa-solid fa-angle-down" :class="{
+                                        'fa-angle-down': !open,
+                                        'fa-angle-up': open,
+                                    }"></i>
+                                </button>
+
+                                <ul x-show="open" x-cloak>
+                                    @foreach ($link['submenu'] as $item)
+                                        <li class="pl-4">
+                                            <a href="http:"
+                                                class="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $item['active'] ? 'bg-gray-900' : '' }}">
+
+                                                <span class="inline-flex w-6 h-6 justify-center items-center">
+                                                    <i class="{{ $item['icon'] }} text-gray-500"></i>
+                                                </span>
+                                                <span class="ms-3 text-left flex-1">{{ $item['name'] }}</span>
+
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <a href="{{ $link['route'] }}"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-900' : '' }}">
+                                <span class="inline-flex w-6 h-6 justify-center items-center">
+                                    <i class="{{ $link['icon'] }} text-gray-500"></i>
+                                </span>
+                                <span class="ms-3">{{ $link['name'] }}</span>
+                            </a>
+                        @endisset
                     @endisset
-
-
                 </li>
             @endforeach
         </ul>
