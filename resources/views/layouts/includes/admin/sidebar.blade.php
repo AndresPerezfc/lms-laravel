@@ -67,14 +67,16 @@
                                     </span>
                                     <span class="ms-3 text-left flex-1">{{ $link['name'] }}</span>
 
-                                    <i class="fa-solid fa-angle-down" :class="{
-                                        'fa-angle-down': !open,
-                                        'fa-angle-up': open,
-                                    }"></i>
+
+                                    <!-- Ajustar el icono con transform y rotate manualmente -->
+                                    <i class="fa-solid fa-angle-down transition-transform duration-300 ease-in-out"
+                                        :class="open ? 'transform rotate-180' : 'transform rotate-0'"></i>
+
                                 </button>
 
                                 <!-- Añadir transición suave al submenú -->
-                                <ul x-show="open" x-transition x-cloak class="transition-all duration-700 ease-in-out transform origin-top">
+                                <ul x-show="open" x-transition x-cloak
+                                    class="transition-all duration-700 ease-in-out transform origin-top">
                                     @foreach ($link['submenu'] as $item)
                                         <li class="pl-4">
                                             <a href="{{ $item['route'] }}"
@@ -105,4 +107,3 @@
         </ul>
     </div>
 </aside>
-
