@@ -58,10 +58,7 @@
                         </div>
                     @else
                         @isset($link['submenu'])
-                            <div x-data="{
-                                open: {{$link['active'] ? 'true' : 'false'}}
-                            
-                            }">
+                            <div x-data="{ open: {{ $link['active'] ? 'true' : 'false' }} }">
                                 <button
                                     class="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-900' : '' }}"
                                     x-on:click="open = !open">
@@ -76,10 +73,11 @@
                                     }"></i>
                                 </button>
 
-                                <ul x-show="open" x-cloak>
+                                <!-- Añadir transición suave al submenú -->
+                                <ul x-show="open" x-transition x-cloak class="transition-all duration-700 ease-in-out transform origin-top">
                                     @foreach ($link['submenu'] as $item)
                                         <li class="pl-4">
-                                            <a href="http:"
+                                            <a href="{{ $item['route'] }}"
                                                 class="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $item['active'] ? 'bg-gray-900' : '' }}">
 
                                                 <span class="inline-flex w-6 h-6 justify-center items-center">
@@ -107,3 +105,4 @@
         </ul>
     </div>
 </aside>
+
