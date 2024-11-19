@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CourseStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,9 @@ class Course extends Model
         'price_id',
     ];
 
+    protected $cast = [
+        'status' => CourseStatus::class
+    ];
 
     public function teacher()
     {
