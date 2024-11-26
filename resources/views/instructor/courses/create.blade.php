@@ -15,6 +15,10 @@
 
                 <h2 class="text-2xl uppercase text-center mb-4">Complete la siguiente información para crear un curso</h2>
 
+                <x-validation-errors class="mb-4">
+
+                </x-validation-errors>
+
                 <div class="mb-4">
                     <x-label class="mb-2">
                         Nombre del curso
