@@ -23,14 +23,14 @@
                     <x-label class="mb-2">
                         Nombre del curso
                     </x-label>
-                    <x-input class="w-full" placeholder="Nombre del curso" name="title" value="{{old('title')}}" />
+                    <x-input class="w-full" placeholder="Nombre del curso" name="title" value="{{old('title')}}" oninput="string_to_slug(this.value, '#slug')" />
                 </div>
 
                 <div class="mb-4">
                     <x-label class="mb-2">
                         Slug
                     </x-label>
-                    <x-input class="w-full" placeholder="Slug del curso" name="slug" value="{{old('slug')}}" />
+                    <x-input id="slug" class="w-full" placeholder="Slug del curso" name="slug" value="{{old('slug')}}" />
                 </div>
 
                 <div class="grid grid-cols-3 gap-4 mb-4">
