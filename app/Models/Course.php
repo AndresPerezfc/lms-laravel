@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Enums\CourseStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Course extends Model
 {
@@ -25,9 +28,19 @@ class Course extends Model
         'price_id',
     ];
 
-    protected $cast = [
-        'status' => CourseStatus::class
+
+    protected $casts = [
+        'status' => CourseStatus::class,
     ];
+
+    protected function image(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                return $this->image_path ? Storage::url($this->image_path) : 'https://icrier.org/wp-content/uploads/2022/12/media-Event-Image-Not-Found.jpg';
+            }
+        );
+    }
 
     public function teacher()
     {
