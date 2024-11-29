@@ -14,7 +14,7 @@
             </div>
 
             <ul>
-                @foreach($courses as $course)
+                @forelse($courses as $course)
 
                 <li class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <a href="{{route('instructor.courses.edit', $course->id)}}" class="md:flex">
@@ -95,7 +95,19 @@
                     </a>
                 </li>
 
-                @endforeach
+                @empty
+
+                <li class="bg-white rounded-lg shoadow-lg p-6">
+
+                    <div class="flex justify-between">
+                        <p>
+                            No hay cursos creados todavía.
+                        </p>
+                    </div>
+
+                </li>
+
+                @endforelse
 
 
             </ul>
