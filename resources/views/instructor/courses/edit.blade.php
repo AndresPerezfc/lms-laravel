@@ -28,7 +28,21 @@
 
             <div class="grid-col-span-1 lg:col-span-4">
                 <div class="card">
+                    <form action="{{route('instructor.courses.update', $course)}} method=" POST" enctype="multipart/form-data"">
+                    @csrf
+                    @method('PUT')
 
+                    <p class=" text-2xl font-semibold">Información del curso</p>
+
+                        <hr class="mt-2 mb-6">
+
+                        <x-validation-errors />
+
+                        <div class="mb-4">
+                            <x-label value="Titulo del curso"></x-label>
+                            <x-input class="w-full" value="{{old('tile', $course->title)}}" name="title"></x-input>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
