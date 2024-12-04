@@ -35,6 +35,8 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained();
             $table->foreignId('price_id')->constrained();
 
+            $table->timestamp('plublished_at')->nullable();
+
             $table->timestamps();
         });
     }

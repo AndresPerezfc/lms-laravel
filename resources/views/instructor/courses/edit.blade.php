@@ -42,6 +42,14 @@
                             <x-label value="Titulo del curso"></x-label>
                             <x-input class="w-full" value="{{old('tile', $course->title)}}" name="title"></x-input>
                         </div>
+
+                        @empty($course->plublished_at)
+                        <div class="mb-4">
+                            <x-label value="Slug del curso"></x-label>
+                            <x-input class="w-full" value="{{old('tile', $course->slug)}}" name="slug"></x-input>
+                        </div>
+                        @endempty
+
                     </form>
                 </div>
             </div>
