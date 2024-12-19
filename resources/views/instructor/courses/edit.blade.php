@@ -50,6 +50,92 @@
                         </div>
                         @endempty
 
+                        <div class="mb-4">
+                            <x-label value="Descripción del curso"></x-label>
+                            <x-textarea class="w-full" name="summary">{{old('summary', $course->summary)}}</x-textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-8">
+
+                            <div>
+                                <x-label class="mb-1">
+                                    Categorías
+                                </x-label>
+
+                                <x-select class="w-full" name="category_id" id="">
+                                    @foreach ($categories as $category )
+                                    @selected(old('category_id', $course->category_id) == $category->id)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+
+                                    @endforeach
+                                </x-select>
+
+
+                            </div>
+
+                            <div>
+                                <x-label class="mb-1">
+                                    Niveles
+                                </x-label>
+                                <x-select class="w-full" name="level_id" id="">
+                                    @foreach ($levels as $level )
+                                    @selected(old('level_id', $course->level_id) == $level->id)
+                                    <option value="{{$level->id}}">{{$level->name}}</option>
+
+                                    @endforeach
+                                </x-select>
+                            </div>
+
+                            <div>
+                                <x-label class="mb-1">
+                                    Precios
+                                </x-label>
+                                <x-select class="w-full" name="price_id" id="">
+                                    @foreach ($prices as $price )
+                                    <option value="{{$price->id}}"
+                                        @selected(old('price_id', $course->price_id)==$price->id) >
+
+                                        @if ($price->value == 0)
+                                        Gratis
+                                        @else
+                                        {{$price->value}} USD $ (nivel {{$loop->index}})
+                                        @endif
+
+                                    </option>
+
+                                    @endforeach
+                                </x-select>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <p class="text-2xl font-semibold mb-2">Imagen del curso</p>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <figure>
+                                    <img class="w-full aspect-video object-cover object-center" src="{{$course->image}}" alt="">
+                                </figure>
+
+                                <div>
+                                    <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo totam, in non nam itaque fugit perspiciatis cum soluta veritatis officia nobis aperiam? Voluptatibus corrupti odio alias sint maxime ex debitis.</p>
+
+                                    <label>
+
+                                        <span class="btn btn-blue md:hidden cursor-pointer">Selecciona una imagen</span>
+
+                                        <input class="hidden md:block" type="file" accept="image/*" name="image">
+                                    </label>
+
+                                    <div class="flex md:justify-end mt-2">
+                                        <x-button>
+                                            Guardar Cambios
+                                        </x-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

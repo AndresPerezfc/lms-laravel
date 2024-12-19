@@ -70,7 +70,12 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('instructor.courses.edit', compact('course'));
+
+        $categories = Category::all();
+        $levels = Level::all();
+        $prices = Price::all();
+
+        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'prices'));
     }
 
     /**

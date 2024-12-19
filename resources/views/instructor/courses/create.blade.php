@@ -33,7 +33,7 @@
                     <x-input id="slug" class="w-full" placeholder="Slug del curso" name="slug" value="{{old('slug')}}" />
                 </div>
 
-                <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
 
                     <div>
                         <x-label class="mb-1">
