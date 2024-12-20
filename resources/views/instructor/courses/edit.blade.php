@@ -36,7 +36,7 @@
 
                         <hr class="mt-2 mb-6">
 
-                        <x-validation-errors />
+                        <x-validation-errors class="mb-4" />
 
                         <div class="mb-4">
                             <x-label value="Titulo del curso"></x-label>
