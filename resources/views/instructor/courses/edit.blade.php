@@ -28,11 +28,12 @@
 
             <div class="grid-col-span-1 lg:col-span-4">
                 <div class="card">
-                    <form action="{{route('instructor.courses.update', $course)}} method=" POST" enctype="multipart/form-data"">
-                    @csrf
-                    @method('PUT')
+                    <form action="{{ route('instructor.courses.update', $course) }}" method="POST" enctype="multipart/form-data">
 
-                    <p class=" text-2xl font-semibold">Información del curso</p>
+                        @csrf
+                        @method('PUT')
+
+                        <p class=" text-2xl font-semibold">Información del curso</p>
 
                         <hr class="mt-2 mb-6">
 
