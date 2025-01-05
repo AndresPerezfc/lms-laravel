@@ -52,8 +52,13 @@
                         @endempty
 
                         <div class="mb-4">
-                            <x-label value="Descripción del curso"></x-label>
+                            <x-label value="Resumen del curso"></x-label>
                             <x-textarea class="w-full" name="summary">{{old('summary', $course->summary)}}</x-textarea>
+                        </div>
+
+                        <div class="mb-4 ckeditor">
+                            <x-label value="Descripción del curso"></x-label>
+                            <x-textarea id="editor" class="w-full" name="description">{{old('description', $course->description)}}</x-textarea>
                         </div>
 
                         <div class="grid md:grid-cols-3 gap-4 mb-8">
@@ -142,5 +147,16 @@
             </div>
         </div>
     </x-container>
+
+    @push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor')).catch(error => {
+                console.log(error);
+            })
+    </script>
+    @endpush
 
 </x-instructor-layout>
