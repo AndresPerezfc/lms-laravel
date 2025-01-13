@@ -120,7 +120,7 @@
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <figure>
-                                    <img class="w-full aspect-video object-cover object-center" src="{{$course->image}}" alt="">
+                                    <img id="imgPreview" class="w-full aspect-video object-cover object-center" src="{{$course->image}}" alt="">
                                 </figure>
 
                                 <div>
@@ -130,7 +130,7 @@
 
                                         <span class="btn btn-blue md:hidden cursor-pointer">Selecciona una imagen</span>
 
-                                        <input class="hidden md:block" type="file" accept="image/*" name="image">
+                                        <input class="hidden md:block" type="file" accept="image/*" name="image" onchange="preview_image(event, '#imgPreview')">
                                     </label>
 
                                     <div class="flex md:justify-end mt-2">
