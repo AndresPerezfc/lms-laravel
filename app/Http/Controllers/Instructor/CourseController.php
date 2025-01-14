@@ -84,7 +84,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-         $data = $request->validate(
+        $data = $request->validate(
             [
                 'title' => 'required|max:255',
                 'slug' => 'required|max:255|unique:courses,slug,' . $course->id,
@@ -97,12 +97,12 @@ class CourseController extends Controller
             ]
         );
 
-        if ($request->hasFile('image')){
-            if($course->image_path){
+        if ($request->hasFile('image')) {
+            if ($course->image_path) {
                 Storage::delete($course->image_path);
             }
 
-           $data['image_path'] = Storage::put('courses/images', $request->file('image'));
+            $data['image_path'] = Storage::put('courses/images', $request->file('image'));
         }
 
         $course->update($data);
@@ -118,5 +118,10 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         //
+    }
+
+    public function video(Course $course)
+    {
+        return view('instructor.courses.video', compact('course'));
     }
 }
