@@ -6,9 +6,6 @@
         </h2>
     </x-slot>
 
-
-
-
     <x-instructor.course-sidebar :course="$course">
 
 

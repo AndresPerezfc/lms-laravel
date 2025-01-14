@@ -6,8 +6,6 @@
         </h2>
     </x-slot>
 
-
-
     <x-instructor.course-sidebar :course="$course">
 
         <form action="{{ route('instructor.courses.update', $course) }}" method="POST" enctype="multipart/form-data">
@@ -57,8 +55,6 @@
 
                         @endforeach
                     </x-select>
-
-
                 </div>
 
                 <div>
@@ -94,7 +90,6 @@
                         @endforeach
                     </x-select>
                 </div>
-
             </div>
 
             <div>
@@ -123,7 +118,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
     </x-instructor.course-sidebar>
 
