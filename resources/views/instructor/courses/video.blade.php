@@ -8,6 +8,7 @@
 
     <x-instructor.course-sidebar :course="$course">
 
+    @livewire('instructor.courses.promotional-video', ['course' => $course])
 
     </x-instructor.course-sidebar>
 
