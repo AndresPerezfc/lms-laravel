@@ -12,6 +12,12 @@ $links = [
 'name' => 'Video promocional',
 'url' => route('instructor.courses.video', $course),
 'active' => request()->routeIs('instructor.courses.video')
+],
+
+[
+'name' => 'Metas del curso',
+'url' => route('instructor.courses.goals', $course),
+'active' => request()->routeIs('instructor.courses.goals')
 ]
 
 ];
