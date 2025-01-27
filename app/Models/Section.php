@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Observers\SecctionObserver;
+use App\Observers\SectionObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[ObservedBy([SecctionObserver::class])]
+#[ObservedBy([SectionObserver::class])]
 
-class Secction extends Model
+class Section extends Model
 {
     use HasFactory;
 
