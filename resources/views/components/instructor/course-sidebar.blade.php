@@ -24,6 +24,12 @@ $links = [
 'name' => 'Requerimientos',
 'url' => route('instructor.courses.requirements', $course),
 'active' => request()->routeIs('instructor.courses.requirements')
+],
+
+[
+'name' => 'Curriculo',
+'url' => route('instructor.courses.curriculum', $course),
+'active' => request()->routeIs('instructor.courses.curriculum')
 ]
 
 ];

@@ -132,4 +132,8 @@ class CourseController extends Controller
     public function requirements(Course $course){
         return view('instructor.courses.requirements', compact('course'));
     }
+
+    public function curriculum(Course $course){
+        return view('instructor.courses.curriculum', compact('course'));
+    }
 }
