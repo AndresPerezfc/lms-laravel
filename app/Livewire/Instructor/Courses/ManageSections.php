@@ -3,6 +3,7 @@
 namespace App\Livewire\Instructor\Courses;
 
 use Livewire\Component;
+use App\Models\Section;
 
 class ManageSections extends Component
 {
