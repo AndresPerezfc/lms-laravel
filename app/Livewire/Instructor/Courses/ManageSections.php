@@ -6,20 +6,25 @@ use Livewire\Component;
 
 class ManageSections extends Component
 {
-
     public $course;
 
     public $name;
 
-    
+    public $sections;
 
-    public function store(){
+    public function mount()
+    {
+        $this->sections = Section::where('course_id', $this->course->id)->orderBy('position', 'asc')->get();
+    }
+
+    public function store()
+    {
         $this->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $this->course->sections()->create([
-            'name' => $this->name
+            'name' => $this->name,
         ]);
 
         $this->reset('name');
