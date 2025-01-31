@@ -61,6 +61,18 @@ class ManageSections extends Component
         $this->getSection();
     }
 
+    public function destroy(Section $section){
+        $section->delete();
+        $this->getSection();
+
+        $this->dispatch('swal', [
+            "icon"=>'success',
+            "title" => "Eliminado",
+            "text"=> 'La sección se ha eliminado con exito',
+                    
+        ]);
+    }
+
     public function render()
     {
         return view('livewire.instructor.courses.manage-sections');

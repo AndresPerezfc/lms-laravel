@@ -1,5 +1,24 @@
-<div>
+<div x-data="{
+    destroySection(sectionId) {
 
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se podrá revertir',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.call('destroy', sectionId)
+            }
+        });
+
+    }
+}">
+    @if ($sections->count())
     <ul class="mb-6 space-y-6">
         @foreach ($sections as $section)
             <li>
@@ -21,7 +40,7 @@
                                     <x-danger-button wire:click="$set('sectionEdit.id', null)">
                                         Cancelar
                                     </x-danger-button>
-    
+
                                     <x-button>
                                         Actualizar
                                     </x-button>
@@ -41,7 +60,7 @@
                                     <i class="fas fa-edit hover:text-indigo-600"></i>
                                 </button>
 
-                                <button>
+                                <button x-on:click="destroySection({{$section->id}})">
                                     <i class="far fa-trash-alt hover:text-red-500"></i>
                                 </button>
                             </div>
@@ -54,6 +73,7 @@
             </li>
         @endforeach
     </ul>
+    @endif
 
     <form wire:submit="store">
 
