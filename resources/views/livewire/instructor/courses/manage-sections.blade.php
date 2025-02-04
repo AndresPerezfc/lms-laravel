@@ -21,7 +21,7 @@
     @if ($sections->count())
     <ul class="mb-6 space-y-6">
         @foreach ($sections as $section)
-            <li>
+            <li wire:key="section-{{$section->id}}">
                 <div class="bg-gray-100 rounded-lg shadow-lg px-6 py-4">
 
                     @if ($sectionEdit['id'] == $section->id)
