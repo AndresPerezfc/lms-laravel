@@ -6,7 +6,10 @@ use App\Models\Section;
 
 class SectionObserver
 {
-    public function creating(Section $requirement){
-        $requirement->position = Section::where('course_id', $requirement->course_id)->max('position') + 1;
+    public function creating(Section $section)
+    {
+        if (!$section->position) {
+            $section->position = Section::where('course_id', $section->course_id)->max('position') + 1;
+        }
     }
 }
