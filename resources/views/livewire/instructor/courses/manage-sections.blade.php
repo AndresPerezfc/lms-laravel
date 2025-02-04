@@ -28,7 +28,7 @@
                         <form wire:submit="update">
                             <div class="flex items-center space-x-2">
                                 <label>
-                                    Sección {{ $section->position }}
+                                    Sección {{ $loop->iteration }}
                                 </label>
 
                                 <x-input wire:model="sectionEdit.name" class="flex-1" />
@@ -50,7 +50,7 @@
                     @else
                         <div class="md:flex md:items-center">
                             <h1 class="md:flex-1 truncate">
-                                Sección {{ $section->position }}:
+                                Sección {{ $loop->iteration }}:
                                 <br class="md:hidden">
                                 <span class="font-semibold">{{ $section->name }}</span>
                             </h1>
