@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->integer('position');
 
-            $table->boolean('is_published')->default(0);
+            $table->boolean('is_published')->default(1);
             $table->boolean('is_preview')->default(0);
             $table->boolean('is_processed')->default(0);
 
