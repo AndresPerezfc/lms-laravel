@@ -30,7 +30,7 @@
         @if ($sections->count())
             <ul class="mb-6 space-y-6" x-ref="sections">
                 @foreach ($sections as $section)
-                    <li data-id="{{$section->id}}" wire:key="section-{{ $section->id }}">
+                    <li data-id="{{ $section->id }}" wire:key="section-{{ $section->id }}">
 
                         @include('instructor.sections.create-position')
 
@@ -42,8 +42,9 @@
                                 @include('instructor.sections.show')
                             @endif
 
-
-
+                            <div>
+                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons], key('section-lessons' . $section->id))
+                            </div>
                         </div>
                     </li>
                 @endforeach
