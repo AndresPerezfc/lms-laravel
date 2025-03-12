@@ -29,6 +29,22 @@
                 <x-label>
                     Plataformas
                 </x-label>
+
+                <div class="flex items-center space-x-4">
+                    <button type="button" class="inline-flex flex-col justify-center w-20 h-24 border rounded" :class="platform == 1 ? 'border-indigo-500 text-indigo-500' : 'border-gray-300'" x-on:click="platform = 1"> 
+                        <i class="fa fa-video text-2xl"></i> 
+                        <span class="text-sm mt-2">
+                            Video
+                        </span>
+                    </button>
+
+                    <button type="button" class="inline-flex flex-col justify-center w-20 h-24 border rounded" :class="platform == 2 ? 'border-indigo-500 text-indigo-500' : 'border-gray-300'" x-on:click="platform = 2">
+                        <i class="fab fa-youtube text-2xl"></i> 
+                        <span class="text-sm mt-2">
+                            Youtube
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </form>
