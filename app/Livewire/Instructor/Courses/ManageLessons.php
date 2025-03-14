@@ -4,6 +4,7 @@ namespace App\Livewire\Instructor\Courses;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Rules\UniqueLessonCourse;
 
 class ManageLessons extends Component
 {
@@ -25,7 +26,7 @@ class ManageLessons extends Component
     public function rules()
     {
         $rules = [
-            'lessonCreate.name' => 'required',
+            'lessonCreate.name' => ['required', new UniqueLessonCourse($this->section->course_id)],
             'lessonCreate.platform' => 'required',
         ];
 
