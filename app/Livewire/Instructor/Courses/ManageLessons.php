@@ -3,9 +3,12 @@
 namespace App\Livewire\Instructor\Courses;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ManageLessons extends Component
 {
+
+    use WithFileUploads;
 
     public $section;
     public $lesson;
