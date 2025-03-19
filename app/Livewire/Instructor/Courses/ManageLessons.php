@@ -2,9 +2,13 @@
 
 namespace App\Livewire\Instructor\Courses;
 
+
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Rules\UniqueLessonCourse;
+use Livewire\Attributes\On;
+use App\Events\VideoUploaded;
+use App\Models\Lesson;
 
 class ManageLessons extends Component
 {
@@ -56,6 +60,10 @@ class ManageLessons extends Component
             $this->lessonCreate['video_original_name'] = $this->url;
 
             $lesson = $this->section->lessons()->create($this->lessonCreate);
+
+            VideoUploaded::dispatch($lesson);
+            
+
         }
 
         $this->reset(['url', 'lessonCreate']);
@@ -67,8 +75,10 @@ class ManageLessons extends Component
         $lesson = Lesson::find($lessonId);
         $lesson->save();
 
+        VideoUploaded::dispatch($lesson);
+
         $this->reset('video'); 
-    }
+    }  
 
     public function render()
     {

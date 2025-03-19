@@ -1,19 +1,33 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+namespace App\Listeners\VideoUploaded;
+
+use App\Events\VideoUploaded;
 use App\Models\Lesson;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Http;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg as SupportFFMpeg;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+class ProcessLessonVideo implements ShouldQueue
+{
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+        
+    }
 
-Route::get('prueba', function () {
-    $lesson = Lesson::find(1);
+    /**
+     * Handle the event.
+     */
+    public function handle(VideoUploaded $event): void
+    {
+        $lesson = $event->lesson;
 
     if ($lesson->platform == 1) {
-        $media = FFMpeg::open($lesson->video_path);
+        $media = SupportFFMpeg::open($lesson->video_path);
 
         $lesson->duration = $media->getDurationInSeconds();
         $lesson->image_path = "courses\lessons\posters\{$lesson->slug}.jpg";
@@ -45,6 +59,7 @@ Route::get('prueba', function () {
         $lesson->is_processed = true;
         $lesson->save();
 
-        return $lesson;
+        
     }
-});
+    }
+}
