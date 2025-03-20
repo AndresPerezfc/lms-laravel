@@ -5,6 +5,31 @@
             @foreach ($lessons as $lesson)
                 <li wire:key="lesson-{{ $lesson->id }}">
                     <div class="bg-white rounded-lg shadow-lg px-6 py-4">
+                       @if ($lessonEdit['id'] == $lesson->id)
+                       <form wire:submit="update">
+                        <div class="flex items-center space-x-2">
+                            <label>
+                                Lección
+                            </label>
+                    
+                            <x-input wire:model="lessonEdit.name" class="flex-1" />
+                    
+                        </div>
+                    
+                        <div class="flex justify-end mt-4 ">
+                            <div class="space-x-2">
+                                <x-danger-button wire:click="$set('lessonEdit.id', null)">
+                                    Cancelar
+                                </x-danger-button>
+                    
+                                <x-button>
+                                    Actualizar
+                                </x-button>
+                            </div>
+                        </div>
+                    </form>
+                       @else
+
                        <div class="md:flex md:items-center">
                         <h1 class="md:flex-1 truncate cursor-move">
                             <i class="fas fa-play-circle text-blue-600"></i>
@@ -12,7 +37,7 @@
                         </h1>
 
                             <div class="space-x-3 md:shrink-0 md:ml-4">
-                                <button>
+                                <button wire:click="edit({{ $lesson->id }})">
                                     <i class="fas fa-edit hover:text-indigo-600"></i>
                                 </button>
                         
@@ -26,6 +51,8 @@
 
                             </div>
                        </div>
+                           
+                       @endif
                     </div>
                 </li>
             @endforeach
