@@ -16,7 +16,7 @@ class ManageLessons extends Component
     use WithFileUploads;
 
     public $section;
-    public $lesson;
+    public $lessons;
     public $video, $url;
     public $lessonCreate = [
         'open' => false,
@@ -26,6 +26,12 @@ class ManageLessons extends Component
         'video_path' => null,
         'video_original_name' => null,
     ];
+
+    public function mount($section)
+{
+    $this->section = $section;
+    $this->lessons = $section->lessons()->get();
+}
 
     public function rules()
     {
@@ -82,6 +88,7 @@ class ManageLessons extends Component
 
     public function render()
     {
+        
         return view('livewire.instructor.courses.manage-lessons');
     }
 }
