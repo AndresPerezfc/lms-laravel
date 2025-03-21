@@ -1,6 +1,28 @@
 <div>
 
-    <div class="mb-6">
+    <div x-data="{
+    destroyLesson(lessonId) {
+    
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción no se podrá revertir',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.call('destroy', lessonId)
+                }
+            });
+    
+        }
+    
+    }" 
+    
+    class="mb-6">
         <ul class="space-y-4">
             @foreach ($lessons as $lesson)
                 <li wire:key="lesson-{{ $lesson->id }}">
@@ -41,7 +63,7 @@
                                     <i class="fas fa-edit hover:text-indigo-600"></i>
                                 </button>
                         
-                                <button>
+                                <button x-on:click="destroyLesson({{ $lesson->id }})">
                                     <i class="far fa-trash-alt hover:text-red-500"></i>
                                 </button>
 
