@@ -13,6 +13,8 @@ class Lesson extends Model
 {
     use HasFactory;
 
+    protected $table = 'lessons'; 
+
     protected $fillable = [
         'name',
         'slug',
@@ -32,7 +34,7 @@ class Lesson extends Model
     protected $casts = [
         'is_preview' => 'boolean',
         'is_processed' => 'boolean',
-        'section_id' => 'boolean',
+        
     ];
 
     public function section(){

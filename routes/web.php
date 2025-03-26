@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use App\Models\Lesson;
+use App\Models\Course;
 use Illuminate\Support\Facades\Http;
 
 Route::get('/', function () {
@@ -47,4 +48,11 @@ Route::get('prueba', function () {
 
         return $lesson;
     }
+});
+
+Route::get('prueba-lecciones', function () {
+    $course = Course::first();
+    $sections = $course->sections()->with('lessons')->get();
+    
+    return $sections;
 });
