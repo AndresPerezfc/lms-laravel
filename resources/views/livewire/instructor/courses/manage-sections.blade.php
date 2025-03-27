@@ -43,7 +43,7 @@
                             @endif
 
                             <div class="mt-4">
-                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons], key('section-lessons' . $section->id))
+                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons, 'orderLessons' => $orderLessons], key('section-lessons' . $section->id))
                             </div>
                         </div>
                     </li>

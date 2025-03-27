@@ -52,7 +52,7 @@ Route::get('prueba', function () {
 
 Route::get('prueba-lecciones', function () {
     $course = Course::first();
-    $sections = $course->sections()->with('lessons')->get();
+    $sections = $course->sections()->with(['lessons'])->get();
     
     return $sections;
 });

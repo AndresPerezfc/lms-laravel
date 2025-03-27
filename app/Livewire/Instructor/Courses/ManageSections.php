@@ -20,6 +20,8 @@ class ManageSections extends Component
 
     public $sectionPositionCreate = [ ];
 
+    public $orderLessons;
+
 
     public function mount()
     {
@@ -27,7 +29,11 @@ class ManageSections extends Component
     }
 
     public function getSection(){
-        $this->sections = Section::where('course_id', $this->course->id)->with('lessons')->orderBy('position', 'asc')->get();
+        $this->sections = Section::where('course_id', $this->course->id)->with(['lessons' => function($query){
+            $query->orderBy('position', 'asc');
+        }])->orderBy('position', 'asc')->get();
+
+        $this->orderLessons = $this->sections->pluck('lessons')->collapse()->pluck('id');
     }
 
     public function store()
