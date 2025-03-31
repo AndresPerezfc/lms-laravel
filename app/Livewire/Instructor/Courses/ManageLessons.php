@@ -37,12 +37,6 @@ class ManageLessons extends Component
         $this->lessons = Lesson::where('section_id', $this->section->id)->orderBy('position', 'asc')->get();
     }
 
-    public function mount($section)
-{
-    $this->section = $section;
-    $this->lessons = $section->lessons()->get();
-}
-
     public function rules()
     {
         $rules = [
@@ -78,12 +72,12 @@ class ManageLessons extends Component
             $lesson = $this->section->lessons()->create($this->lessonCreate);
 
             VideoUploaded::dispatch($lesson);
-            
-
         }
 
         $this->reset(['url', 'lessonCreate']);
         $this->getLessons();
+
+        $this->dispatch('refreshOrderLessons');
     }
 
     public function edit($lessonId){
@@ -118,6 +112,7 @@ class ManageLessons extends Component
         $lesson->delete();
 
         $this->getLessons();
+        $this->dispatch('refreshOrderLessons');
 
     }
 

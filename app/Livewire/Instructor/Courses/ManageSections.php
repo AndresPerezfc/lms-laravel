@@ -28,6 +28,7 @@ class ManageSections extends Component
         $this->getSection();
     }
 
+    #[On('refreshOrderLessons')]
     public function getSection(){
         $this->sections = Section::where('course_id', $this->course->id)->with(['lessons' => function($query){
             $query->orderBy('position', 'asc');

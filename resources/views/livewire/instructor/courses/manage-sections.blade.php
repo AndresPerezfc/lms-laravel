@@ -27,6 +27,7 @@
             }
         }
     });">
+
         @if ($sections->count())
             <ul class="mb-6 space-y-6" x-ref="sections">
                 @foreach ($sections as $section)
@@ -42,8 +43,9 @@
                                 @include('instructor.sections.show')
                             @endif
 
+                            
                             <div class="mt-4">
-                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons, 'orderLessons' => $orderLessons], key('section-lessons' . $section->id))
+                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons, 'orderLessons' => $orderLessons], key('section-lessons-' . $section->id . '-' . $orderLessons->join('-')))
                             </div>
                         </div>
                     </li>
