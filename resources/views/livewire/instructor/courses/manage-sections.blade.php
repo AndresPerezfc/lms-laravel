@@ -45,7 +45,7 @@
 
                             
                             <div class="mt-4">
-                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons, 'orderLessons' => $orderLessons], key('section-lessons-' . $section->id . '-' . $orderLessons->join('-')))
+                                @livewire('instructor.courses.manage-lessons', ['section' => $section, 'lessons' => $section->lessons, 'orderLessons' => $orderLessons], key('section-lessons-' . $section->id . '-position' . '-' . $loop->iteration . $orderLessons->join('-')))
                             </div>
                         </div>
                     </li>
