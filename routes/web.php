@@ -17,7 +17,7 @@ Route::get('prueba', function () {
         $media = FFMpeg::open($lesson->video_path);
 
         $lesson->duration = $media->getDurationInSeconds();
-        $lesson->image_path = "courses\lessons\posters\{$lesson->slug}.jpg";
+        $lesson->image_path = 'courses/lessons/posters/' . $lesson->slug . 'dfds' . '.jpg';
 
         $media->getFrameFromSeconds(2)->export()->save($lesson->image_path);
 

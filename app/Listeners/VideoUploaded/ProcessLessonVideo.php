@@ -30,7 +30,7 @@ class ProcessLessonVideo implements ShouldQueue
         $media = SupportFFMpeg::open($lesson->video_path);
 
         $lesson->duration = $media->getDurationInSeconds();
-        $lesson->image_path = "courses\lessons\posters\{$lesson->slug}.jpg";
+        $lesson->image_path = 'courses/lessons/posters/' . $lesson->slug . '.jpg';
 
         $media->getFrameFromSeconds(2)->export()->save($lesson->image_path);
 

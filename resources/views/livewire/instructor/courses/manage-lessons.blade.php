@@ -67,7 +67,7 @@
                        @else
 
                        <div x-data="{
-                        open:false
+                        open:true
                        }">
                         <div class="md:flex md:items-center">
                             <h1 class="md:flex-1 truncate cursor-move handle-lesson">
