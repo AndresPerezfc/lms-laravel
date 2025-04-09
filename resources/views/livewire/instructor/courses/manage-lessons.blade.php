@@ -183,8 +183,6 @@
                         <x-input wire:model="url" class="w-full" placeholder="Ingrese la URL de youtube" />
                     </div>
 
-
-
                 </div>
             </div>
 

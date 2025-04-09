@@ -11,6 +11,8 @@ class ManageLessonContent extends Component
 
     public $editVideo = false;
 
+    public $platform = 1, $video, $url;
+
     public function render()
     {
         return view('livewire.instructor.courses.manage-lesson-content');

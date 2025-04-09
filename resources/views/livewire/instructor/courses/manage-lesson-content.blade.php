@@ -1,8 +1,63 @@
 <div>
 
     @if ($editVideo)
-        <div>
-            Está por editar el video
+        <div x-data="{
+            platform: @entangle('platform'),
+        }">
+            <div class="md:flex md:items-center md:space-x-4 space-y-4 md:space-y-0">
+                <div class="md:flex md:items-center md:space-x-4 md:space-y-0">
+                    <button type="button"
+                        class="inline-flex flex-col justify-center w-full md:w-20 h-24 border rounded"
+                        :class="platform == 1 ? 'border-indigo-500 text-indigo-500' : 'border-gray-300'"
+                        x-on:click="platform = 1">
+                        <i class="fa fa-video text-2xl"></i>
+                        <span class="text-sm mt-2">
+                            Video
+                        </span>
+                    </button>
+
+                    <button type="button"
+                        class="inline-flex flex-col justify-center w-full md:w-20 h-24 border rounded"
+                        :class="platform == 2 ? 'border-indigo-500 text-indigo-500' : 'border-gray-300'"
+                        x-on:click="platform = 2">
+                        <i class="fab fa-youtube text-2xl"></i>
+                        <span class="text-sm mt-2">
+                            Youtube
+                        </span>
+                    </button>
+                </div>
+
+                <p>
+                    Primero debes elegir una plataforma para subir un contenido
+                </p>
+
+            </div>
+
+            <div class="mt-2" x-show="platform == 1" x-cloak>
+                <x-label>
+                    Video
+                </x-label>
+
+                <x-progress-indicators wire:model="video" />
+            </div>
+
+            <div class="mt-2" x-show="platform == 2" x-cloak>
+                <x-label>
+                    Video
+                </x-label>
+
+                <x-input wire:model="url" class="w-full" placeholder="Ingrese la URL de youtube" />
+            </div>
+
+            <div class="flex justify-end space-x-2">
+                <x-danger-button>
+                    Cancelar
+                </x-danger-button>
+
+                <x-button wire:click="update">
+                    Actualizar
+                </x-button>
+            </div>
         </div>
     @else
     <div>
