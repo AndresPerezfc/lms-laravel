@@ -1,9 +1,9 @@
-<div>
+<div  x-data="{
+    platform: @entangle('platform'),
+}">
 
     @if ($editVideo)
-        <div x-data="{
-            platform: @entangle('platform'),
-        }">
+        <div>
             <div class="md:flex md:items-center md:space-x-4 space-y-4 md:space-y-0">
                 <div class="md:flex md:items-center md:space-x-4 md:space-y-0">
                     <button type="button"
@@ -30,9 +30,9 @@
                 <p>
                     Primero debes elegir una plataforma para subir un contenido
                 </p>
-
             </div>
 
+           <div>
             <div class="mt-2" x-show="platform == 1" x-cloak>
                 <x-label>
                     Video
@@ -48,13 +48,16 @@
 
                 <x-input wire:model="url" class="w-full" placeholder="Ingrese la URL de youtube" />
             </div>
+           </div>
+                
+           
 
-            <div class="flex justify-end space-x-2">
-                <x-danger-button>
+            <div class="flex justify-end space-x-2 mt-4">
+                <x-danger-button wire:click="$set('editVideo', false)">
                     Cancelar
                 </x-danger-button>
 
-                <x-button wire:click="update">
+                <x-button wire:click="saveVideo">
                     Actualizar
                 </x-button>
             </div>
