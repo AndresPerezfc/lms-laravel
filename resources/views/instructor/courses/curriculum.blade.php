@@ -12,4 +12,8 @@
 
     </x-instructor.course-sidebar>
 
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    @endpush
+
 </x-instructor-layout>
