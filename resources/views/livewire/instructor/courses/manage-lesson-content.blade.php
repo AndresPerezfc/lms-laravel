@@ -148,6 +148,13 @@
 
                 </div>
 
+                <hr>
+
+                <div class="md:space-y-2">   
+                    <x-toggle label="Publicado" wire:model="is_published" />
+                    <x-toggle label="Vista previa" wire:model="is_preview" />
+                </div>
+
             </div>
 
         </div>
