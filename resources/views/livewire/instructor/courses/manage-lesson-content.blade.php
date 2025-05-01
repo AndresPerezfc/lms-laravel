@@ -126,27 +126,8 @@
                     @if ($editDescription)
                         <form wire:submit="saveDescription">
 
-                            <div x-data="{
-                                content: @entangle('description'),
-                            }" x-init="ClassicEditor
-                                .create($refs.editor)
-                                .then(editor => {
-                            
-                                    if (content) {
-                                        editor.setData(content);
-                                    }
-                            
-                                    editor.model.document.on('change:data', () => {
-                                        content = editor.getData();
-                                    })
-                                })
-                                .catch(error => {
-                                    console.log(error);
-                                })">
-                                <x-textarea x-ref="editor" wire:model="description">
-                                    {{ $description }}
-                                </x-textarea>
-                            </div>
+                            <x-ckeditor wire:model="description" />
+                            <x-input-error for="description" class="mt-2"></x-input-error>
 
                             <div class="flex justify-end mt-4">
                                 <x-button>
